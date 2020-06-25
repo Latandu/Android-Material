@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setSupportActionBar(findViewById(R.id.toolbar))
 
         val drawerToggle = ActionBarDrawerToggle(this,drawer,0,0)
@@ -39,32 +38,29 @@ class MainActivity : AppCompatActivity() {
 
         var myFragment = MainFragment()
 
-     /*   val manager = supportFragmentManager
-        val transaction = manager.beginTransaction()
-        transaction.replace(R.id.fragment_container, myFragment)
-        transaction.addToBackStack(null)
-        transaction.commit() */
 
 
     }
+
+
     private fun setFragment(fragmentName: String)
     {
         lateinit var myFragment:Fragment
         when(fragmentName)
         {
-            "main"->
+            constants.MAIN->
             {
                 myFragment = MainFragment()
             }
-            "add"->
+            constants.ADD->
             {
                 myFragment = AddContactFragment()
             }
-            "del"->
+            constants.DEL->
             {
                 myFragment = DelContactFragment()
             }
-            "update"->
+            constants.UPDATE->
             {
                 myFragment = UpdateContactFragment()
             }
@@ -85,22 +81,22 @@ class MainActivity : AppCompatActivity() {
              {
                 R.id.showContacts->
                 {
-                    setFragment("main")
+                    setFragment(constants.MAIN)
 
                 }
                 R.id.addContact->
                 {
-                    setFragment("add")
+                    setFragment(constants.ADD)
 
 
                 }
                 R.id.delContact->
                 {
-                    setFragment("del")
+                    setFragment(constants.DEL)
                 }
                 R.id.updateContact->
                 {
-                    setFragment("update")
+                    setFragment(constants.UPDATE)
                 }
              }
             drawer.closeDrawer(GravityCompat.START)
@@ -129,3 +125,5 @@ class MainActivity : AppCompatActivity() {
         else super.onBackPressed()
     }
     }
+
+
