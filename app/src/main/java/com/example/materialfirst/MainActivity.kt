@@ -17,11 +17,13 @@ import com.orm.SugarDb
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.toolbar))
+
         val drawerToggle = ActionBarDrawerToggle(this,drawer,0,0)
         drawer.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
@@ -31,13 +33,17 @@ class MainActivity : AppCompatActivity() {
         val schemaGenerator=SchemaGenerator(this)
         schemaGenerator.createDatabase(SugarDb(this).db)
 
+        setFragment("main")
+
+        setupDrawerContent(navigationView)
+
         var myFragment = MainFragment()
 
-        val manager = supportFragmentManager
+     /*   val manager = supportFragmentManager
         val transaction = manager.beginTransaction()
         transaction.replace(R.id.fragment_container, myFragment)
         transaction.addToBackStack(null)
-        transaction.commit()
+        transaction.commit() */
 
 
     }
@@ -68,6 +74,7 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.fragment_container, myFragment)
         transaction.addToBackStack(null)
         transaction.commit()
+
     }
 
     private fun setupDrawerContent(navigationView: NavigationView)
